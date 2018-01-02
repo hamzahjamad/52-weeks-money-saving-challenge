@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/timeline.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar-brand.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -52,6 +54,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('home') }}">
+                                            Home
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

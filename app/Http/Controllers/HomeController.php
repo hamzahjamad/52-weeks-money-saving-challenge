@@ -23,11 +23,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $challenges = Challenge::all();
-        $completed_challenges_ids = Auth::user()->completedChallenges->pluck('challenge_id')->toArray();
+        $year = date('Y');
 
-        return view('home', compact('challenges', 'completed_challenges_ids'));
+        if ($request->year) {
+            $year = $request->year;
+        }
+
+        $challenges = Challenge::all();
+        $completed_challenges_ids = Auth::user()->completedChallenges()
+                                                ->where('created_at', 'LIKE', $year .'%')
+                                                ->get()
+                                                ->pluck('challenge_id')
+                                                ->toArray();
+
+        $current_week_number = $this->getCurrentWeek();                                                                            
+        return view('home', compact('challenges', 'completed_challenges_ids', 'current_week_number', 'year'));
+    }
+
+    private function getCurrentWeek()
+    {
+        $current_date = date('Y-m-d');
+        $date = new \DateTime($current_date);
+        return $date->format("W") + 0; //change to integer
     }
 }

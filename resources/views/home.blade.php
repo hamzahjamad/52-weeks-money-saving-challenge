@@ -18,18 +18,18 @@
                       <thead>
                           <tr>   
                             <th>Week</th>
+                            <th>Checkmark</th>
                             <th>Deposit</th>
                             <th>Total</th>
-                            <th>Checkmark</th>
                           </tr>
                       </thead>
                       <tbody>
                         @foreach($challenges as $challenge)
-                          <tr style="cursor: pointer;" onclick="sendForm(event, document.getElementById('change-state-form'), {{$challenge->id}})">
+                          <tr class="{{ $current_week_number == $challenge->week ? 'success' : ''}}" style="cursor: pointer;" onclick="sendForm(event, document.getElementById('change-state-form'), {{$challenge->id}})">
                               <td>{{$challenge->week}}</td>
+                              <td>{{ in_array($challenge->id, $completed_challenges_ids) ? '✅' : '' }}</td>
                               <td>RM{{$challenge->deposit}}</td>
                               <td>RM{{$challenge->total}}</td>
-                              <td>{{ in_array($challenge->id, $completed_challenges_ids) ? '✅' : '' }}</td>
                           </tr>
                         @endforeach  
                       </tbody>
@@ -42,10 +42,15 @@
                             form.submit();
                         }
                     </script>
-                    <form id="change-state-form" style="display: none" action="{{ url('/challenge/change-state') }}" method="POST">{{ csrf_field() }}<input type="hidden" name="challengeid"></form>
+                    <form id="change-state-form" style="display: none" action="{{ url('/challenge/change-state') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="challengeid">
+                        <input type="hidden" name="year" value="{{$year}}">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+@include('layouts.footer')
 </div>
 @endsection
