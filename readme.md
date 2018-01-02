@@ -6,7 +6,25 @@ This is a simple webapp to record your saving. We make saving money activity as 
 
 I host the production and live version in [https://52-weeks-money-saving-challenge.hamzahjamad.com/](https://52-weeks-money-saving-challenge.hamzahjamad.com/) so everyone can use it. 😝 I'm not sure what is the appropriate name for the domain, so i just put it the same as the project name. Hopefully it will be useful for everyone.
 
-##Made Using Laravel
+## Screenshots
+
+Welcome page
+![Welcome page](public/img/screenshots/welcome.png?raw=true "Welcome page")
+
+Login page
+![Login page](public/img/screenshots/login.png?raw=true "Login page")
+
+Password reset page
+![Password reset page](public/img/screenshots/password-reset.png?raw=true "Password reset page")
+
+Register page
+![Register page](public/img/screenshots/register.png?raw=true "Homepage")
+
+Home page
+![Home page](public/img/screenshots/home.png?raw=true "Home page")
+
+
+## Made Using Laravel
 
 This webapp are build on top of Laravel. If you know Laravel and want to help me improve it, feel free to make a pull request.
 
